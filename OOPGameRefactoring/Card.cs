@@ -10,8 +10,17 @@ namespace OOPGameRefactoring
     {
         public string cardName { get; set; }
         public int cardCost { get; set; }
+        public int damageAmount { get; set; }
+        
 
-        public void DealDamage(int damage)
+        void PlayCard(CardType newCard)
+        {
+
+        }
+
+        
+
+        virtual void DealDamage(int damage)
         {
 
         }

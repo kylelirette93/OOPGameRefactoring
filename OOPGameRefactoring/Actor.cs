@@ -11,6 +11,7 @@ namespace OOPGameRefactoring
         public int Health { get; set; }
         public int Mana { get; set; }
         public int Shield { get; set; }
+        public bool IsAlive { get { return Health > 0; } }
         public bool isTurn { get; set; }
 
         public Actor()

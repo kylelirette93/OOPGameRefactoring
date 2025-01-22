@@ -45,6 +45,13 @@
   <ItemGroup>
     <Compile Include="Card.cs" />
     <Compile Include="Actor.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="Class2.cs" />
+    <Compile Include="FireballCard.cs" />
+    <Compile Include="IceShieldCard.cs" />
+    <Compile Include="HealCard.cs" />
+    <Compile Include="PowerupCard.cs" />
+    <Compile Include="UIManager.cs" />
     <Compile Include="Deck.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Enemy.cs" />
