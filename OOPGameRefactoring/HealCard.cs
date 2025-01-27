@@ -8,5 +8,9 @@ namespace OOPGameRefactoring
 {
     public class HealCard : Card
     {
+        public override void Play()
+        {
+
+        }
     }
 }

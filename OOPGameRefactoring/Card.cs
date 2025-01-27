@@ -8,26 +8,14 @@ namespace OOPGameRefactoring
 {
     public abstract class Card
     {
-        public string cardName { get; set; }
-        public int cardCost { get; set; }
-        public int damageAmount { get; set; }
-        
+        public string Name { get; set; }
+        public int Cost { get; set; }
+        public int Damage { get; set; }
+        public int Shield { get; set; }
 
-        void PlayCard(CardType newCard)
-        {
+        public string Effect { get; set; }
 
-        }
 
-        
-
-        virtual void DealDamage(int damage)
-        {
-
-        }
-
-        public void GainShield(int shield)
-        {
-
-        }
+        public abstract void Play(Player player, Player target);
     }
 }

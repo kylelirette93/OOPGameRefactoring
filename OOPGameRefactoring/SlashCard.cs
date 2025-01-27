@@ -8,5 +8,9 @@ namespace OOPGameRefactoring
 {
     public class SlashCard : Card
     {
+        public override void Play(Player target)
+        {
+            target.TakeDamage(); 
+        }
     }
 }

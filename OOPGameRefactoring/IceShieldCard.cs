@@ -8,6 +8,10 @@ namespace OOPGameRefactoring
 {
     public class IceShieldCard : Card
     {
+        public override void Play()
+        {
+
+        }
 
     }
 }

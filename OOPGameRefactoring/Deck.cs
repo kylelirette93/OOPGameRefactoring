@@ -8,65 +8,49 @@ namespace OOPGameRefactoring
 {
     public class Deck
     {
-        public int DeckSize { get; set; }
-        List<Card> deck = new List<Card>();
-        List<Card> hand = new List<Card>();
-        const int maxHandSize = 3;
-        int handCount;
+        public List<Card> Cards;
         Random random = new Random();
 
         public Deck()
         {
-            DeckSize = 20;
+            Cards = new List<Card>();
             InitializeDeck();
         }
+
         public void InitializeDeck()
         {
-            for (int i = 0; i < 5; i++)
-            {
-                deck.Add(new FireballCard());
-                deck.Add(new IceShieldCard());
-            }
-            for (int i = 3; i < 3; i++)
-            {
-                deck.Add(new HealCard());
-                deck.Add(new PowerupCard());
-            }
-            for (int i = 4; i < 4; i++)
-            {
-                deck.Add(new SlashCard());
-            }
-
-            ShuffleDeck(deck);
+            for (int i = 0; i < 5; i++) Cards.Add(new FireballCard());
+            for (int i = 0; i < 5; i++) Cards.Add(new IceShieldCard());
+            for (int i = 0; i < 3; i++) Cards.Add(new HealCard());
+            for (int i = 0; i < 4; i++) Cards.Add(new SlashCard());
+            for (int i = 0; i < 3; i++) Cards.Add(new PowerupCard());
         }
-
-        public void ShuffleDeck(List<Card> deck)
+        public void Shuffle()
         {
-            int n = deck.Count;
+            int n = Cards.Count;
             while (n > 1)
             {
                 n--;
                 int k = random.Next(n + 1);
-                Card temp = deck[k];
-                deck[k] = deck[n];
-                deck[n] = temp;
+                Card temp = Cards[k];
+                Cards[k] = Cards[n];
+                Cards[n] = temp;
             }
         }
 
-        public void Draw()
+        public Card DrawCard()
         {
-            if (handCount < maxHandSize && deck.Count > 0)
+            if (Cards.Count > 0)
             {
-                hand.Add(deck[0]);
-                deck.RemoveAt(0);
+                Card drawnCard = Cards[0];
+                Cards.RemoveAt(0);
+                return drawnCard;
             }
-        }
-
-        
-
-        public void PlayCard(Card card)
-        {
-            enemy.TakeDamage(card.damageAmount);
+            else
+            {
+                // No more cards in the deck.
+                return null;
+            }
         }
     }
 }

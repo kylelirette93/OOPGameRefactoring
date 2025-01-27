@@ -8,5 +8,9 @@ namespace OOPGameRefactoring
 {
     public class PowerupCard : Card
     {
+        public override void Play()
+        {
+
+        }
     }
 }
