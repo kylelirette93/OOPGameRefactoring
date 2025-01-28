@@ -11,15 +11,39 @@ namespace OOPGameRefactoring
         public FireballCard()
         {
             Name = "Fireball";
-            Cost = 30;
-            Damage = 40;
-            Shield = 0;
-            Effect = $"Deals {Damage} damage.";
+            ManaCost = 30;
+            Description = "Deals 30 damage to the opponent.";
         }
 
         public override void Play(Player player, Player target)
         {
-            throw new NotImplementedException();
+            int damage = 30;
+            if (player.Mana < ManaCost)
+            {
+                Console.WriteLine($"{player.Name} does not have enough mana to cast Fireball.");
+                return;
+            }
+
+            player.Mana -= ManaCost;
+
+            if (player.HasFireBuff) damage *= 2;
+            if (target.HasIceShield) damage /= 2;
+
+            if (target.Shield > 0)
+            {
+                if (target.Shield >= damage)
+                {
+                    target.Shield -= damage;
+                    damage = 0;
+                }
+                else
+                {
+                    damage -= target.Shield;
+                    target.Shield = 0;
+                }
+            }
+            target.Health -= damage;
+            Console.WriteLine($"{player.Name} casts Fireball for {damage} damage!");
         }
     }
 }

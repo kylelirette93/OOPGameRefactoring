@@ -8,14 +8,22 @@ namespace OOPGameRefactoring
 {
     public abstract class Card
     {
-        public string Name { get; set; }
-        public int Cost { get; set; }
-        public int Damage { get; set; }
-        public int Shield { get; set; }
+        // Refactored to have an abstract class for all cards.
+        private string name;
+        public string Name { get { return name; } set { name = value; } }
+        private int manaCost;
+        public int ManaCost { get { return manaCost; } set { manaCost = value; } }
+        private string description;
+        public string Description { get { return description; } set { description = value; } }
 
-        public string Effect { get; set; }
+        public Card()
+        {
+            // Constructor each unique card class uses to set the card's properties.
+           
+        }
 
 
-        public abstract void Play(Player player, Player target);
+        // Abstract method to override and play any card type.
+        public abstract void Play(Player player, Player opponent);
     }
 }

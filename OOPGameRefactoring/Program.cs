@@ -10,17 +10,10 @@ namespace OOPGameRefactoring
     {
         static void Main(string[] args)
         {
-            Player player = new Player();
-            Deck playerDeck = new Deck();
-
-            Enemy enemy = new Enemy();
-            Deck enemyDeck = new Deck();
+            // Static entry point to the game class.
+            // Initialize and start game.
+            Game game = new Game();
+            game.StartGame();
         }
     }
 }
-
-
-
-
-    
-
