@@ -20,8 +20,7 @@ namespace OOPGameRefactoring
             int damage = 50;
             if (player.Mana >= ManaCost)
             {
-                target.Health -= 50;
-                player.Mana -= ManaCost;
+                target.Health -= damage;
                 Console.WriteLine($"{player.Name} casts Lightning for {damage} damage.");
             }
             else

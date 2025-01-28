@@ -21,7 +21,6 @@ namespace OOPGameRefactoring
             {
                 player.Shield += 30;
                 player.HasIceShield = true;
-                player.Mana -= ManaCost;
                 Console.WriteLine($"{player.Name} casts Ice Shield!");
             }
             else

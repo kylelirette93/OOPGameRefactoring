@@ -93,7 +93,8 @@ namespace OOPGameRefactoring
         {
             // Check which player's turn it is.
             var currentPlayer = isPlayer ? player : enemy;
-            var opponent = isPlayer ? enemy : player;
+            currentPlayer.Mana = player.Mana;
+            currentPlayer.Health = player.Health;
             var hand = currentPlayer.Hand;
 
             if (isPlayer)

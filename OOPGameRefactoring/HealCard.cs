@@ -20,7 +20,6 @@ namespace OOPGameRefactoring
             if (player.Mana >= ManaCost)
             {
                 player.Health += 40;
-                player.Mana -= ManaCost;
                 Console.WriteLine($"{player.Name} casts Heal and restores 40 health!");
             }
             else

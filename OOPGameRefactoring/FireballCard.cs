@@ -24,8 +24,6 @@ namespace OOPGameRefactoring
                 return;
             }
 
-            player.Mana -= ManaCost;
-
             if (player.HasFireBuff) damage *= 2;
             if (target.HasIceShield) damage /= 2;
 
@@ -45,5 +43,7 @@ namespace OOPGameRefactoring
             target.Health -= damage;
             Console.WriteLine($"{player.Name} casts Fireball for {damage} damage!");
         }
+
+        
     }
 }

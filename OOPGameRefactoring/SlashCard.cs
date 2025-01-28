@@ -23,7 +23,6 @@ namespace OOPGameRefactoring
             if (player.Mana >= ManaCost)
             {
                 target.Health -= damage;
-                player.Mana -= ManaCost;
                 Console.WriteLine($"{player.Name} casts Slash for {damage} damage.");
             }
             else
