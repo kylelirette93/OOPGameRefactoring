@@ -16,7 +16,7 @@ namespace OOPGameRefactoring
             GrantsIceShield = true;
         }
 
-        public override void Play(Player player, Player opponent)
+        public override void Play(Character player, Character opponent)
         {
             player.Shield += 30;
             player.HasIceShield = true;

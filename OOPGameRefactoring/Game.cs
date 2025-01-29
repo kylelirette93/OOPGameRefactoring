@@ -14,11 +14,15 @@ namespace OOPGameRefactoring
         private Deck playerDeck = new Deck();
 
         // Create instance of enemy and their deck.
-        private Player enemy = new Player("Enemy");
+        private Enemy enemy = new Enemy("Enemy");
         private Deck enemyDeck = new Deck();
+
+        Character currentPlayer;
+        Character targetPlayer;
 
         // Create random instance for enemy's turn.
         Random random = new Random();
+        bool isPlayer = true;
 
         public void StartGame()
         {
@@ -62,6 +66,8 @@ namespace OOPGameRefactoring
             Console.ReadKey();
         }
 
+       
+
         private void DisplayGameState()
         {
             // Display player and enemy stats.
@@ -92,7 +98,15 @@ namespace OOPGameRefactoring
         private void PlayTurn(bool isPlayer)
         {
             // Check which player's turn it is.
-            var currentPlayer = isPlayer ? player : enemy;
+            if (isPlayer)
+            {
+                currentPlayer = player;
+            }
+            else
+            {
+                currentPlayer = enemy;
+            }
+
             var hand = currentPlayer.Hand;
 
             if (isPlayer)
@@ -142,9 +156,17 @@ namespace OOPGameRefactoring
         }
 
         private void PlayCard(Card card, bool isPlayer)
-        {
-            var currentPlayer = isPlayer ? player : enemy;
-            var targetPlayer = isPlayer ? enemy : player;
+        { 
+            if (isPlayer)
+            {
+                currentPlayer = player;
+                targetPlayer = enemy;
+            }
+            else
+            {
+                currentPlayer = enemy;
+                targetPlayer = player;
+            }
 
             // Deduct the mana cost and play the card
             currentPlayer.Mana -= card.ManaCost;
@@ -165,7 +187,14 @@ namespace OOPGameRefactoring
 
         private void UpdateBuffs(bool isPlayer)
         {
-            var currentPlayer = isPlayer ? player : enemy;
+            if (isPlayer)
+            {
+                currentPlayer = player;
+            }
+            else
+            {
+                currentPlayer = enemy;
+            }
 
             // Update fire buff
             if (currentPlayer.HasFireBuff)

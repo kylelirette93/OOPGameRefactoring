@@ -16,7 +16,7 @@ namespace OOPGameRefactoring
             GrantsFireBuff = true;
         }
 
-        public override void Play(Player player, Player opponent)
+        public override void Play(Character player, Character opponent)
         {
             player.HasFireBuff = true;
             player.Mana -= ManaCost;

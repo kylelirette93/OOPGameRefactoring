@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace OOPGameRefactoring
 {
-    public class Player : Character
+    public class Enemy : Character
     {
-        public Player(string name) : base(name)
+        public Enemy(string name) : base(name)
         {
             // Inherits constructor of base class character.
         }

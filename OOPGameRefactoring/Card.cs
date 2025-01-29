@@ -25,6 +25,6 @@ namespace OOPGameRefactoring
 
 
         // Abstract method to override and play any card type.
-        public abstract void Play(Player player, Player opponent);
+        public abstract void Play(Character player, Character opponent);
     }
 }

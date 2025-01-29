@@ -15,7 +15,7 @@ namespace OOPGameRefactoring
             Description = "Deals 30 damage to the opponent.";
         }
 
-        public override void Play(Player player, Player target)
+        public override void Play(Character player, Character target)
         {
             int baseDamage = 30;
             int damage = baseDamage;

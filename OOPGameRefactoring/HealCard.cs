@@ -15,7 +15,7 @@ namespace OOPGameRefactoring
             Description = "Restore 40 health.";
         }
 
-        public override void Play(Player player, Player target)
+        public override void Play(Character player, Character target)
         {
             player.Health += 40;
             Console.WriteLine($"{player.Name} casts Heal and restores 40 health!");

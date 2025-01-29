@@ -29,7 +29,7 @@ namespace OOPGameRefactoring
             for (int i = 0; i < 3; i++) Cards.Add(new HealCard());
             for (int i = 0; i < 4; i++) Cards.Add(new SlashCard());
             for (int i = 0; i < 3; i++) Cards.Add(new PowerupCard());
-            for (int i = 0; i < 2; i++) Cards.Add(new LightningCard());
+            for (int i = 0; i < 1; i++) Cards.Add(new LightningCard());
             // Refactored to shuffle both player and opponent's decks.
             Shuffle();
         }
