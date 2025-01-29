@@ -13,20 +13,14 @@ namespace OOPGameRefactoring
             Name = "IceShieldCard";
             ManaCost = 20;
             Description = "Gain 30 shield and ice protection.";
+            GrantsIceShield = true;
         }
 
         public override void Play(Player player, Player opponent)
         {
-            if (player.Mana >= ManaCost)
-            {
-                player.Shield += 30;
-                player.HasIceShield = true;
-                Console.WriteLine($"{player.Name} casts Ice Shield!");
-            }
-            else
-            {
-               Console.WriteLine($"{player.Name} does not have enough mana to cast Ice Shield.");
-            }
+            player.Shield += 30;
+            player.HasIceShield = true;
+            Console.WriteLine($"{player.Name} casts Ice Shield!"); 
         }
     }
 }

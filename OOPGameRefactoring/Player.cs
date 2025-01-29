@@ -16,15 +16,15 @@ namespace OOPGameRefactoring
         private int health;
         public int Health
         {
-            get { return Math.Min(100, health); }
-            set { health = value; }
+            get { return health; }
+            set { health = Math.Max(0, Math.Min(100, value)); }
         }
 
         private int mana;
         public int Mana
         {
-            get { return Math.Min(100, mana); }
-            set { mana = value; }
+            get { return mana; }
+            set { mana = Math.Max(0, Math.Min(100, value)); }
         }
         private int shield;
         public int Shield
@@ -46,6 +46,11 @@ namespace OOPGameRefactoring
             set { hasIceShield = value; }
         }
 
+        // Keep track of turns for buffs.
+        public int FireBuffCounter { get; set; }
+
+        public int IceShieldCounter { get; set; }
+
         // Refactored to have card logic seperate from main program.
         // List of cards in players hand.
         public List<Card> Hand { get; private set; }
@@ -63,6 +68,8 @@ namespace OOPGameRefactoring
             Shield = 0;
             hasFireBuff = false;
             hasIceShield = false;
+            FireBuffCounter = 0;
+            IceShieldCounter = 0;
             Hand = new List<Card>();
             deck = new Deck();
         }

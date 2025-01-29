@@ -15,11 +15,12 @@ namespace OOPGameRefactoring
         public int ManaCost { get { return manaCost; } set { manaCost = value; } }
         private string description;
         public string Description { get { return description; } set { description = value; } }
+        public bool GrantsFireBuff { get; set; }
+        public bool GrantsIceShield { get; set; }
 
         public Card()
         {
-            // Constructor each unique card class uses to set the card's properties.
-           
+            // Constructor each unique card class uses to set the card's properties.         
         }
 
 

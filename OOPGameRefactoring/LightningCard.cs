@@ -18,15 +18,8 @@ namespace OOPGameRefactoring
         public override void Play(Player player, Player target)
         {
             int damage = 50;
-            if (player.Mana >= ManaCost)
-            {
-                target.Health -= damage;
-                Console.WriteLine($"{player.Name} casts Lightning for {damage} damage.");
-            }
-            else
-            {
-                Console.WriteLine($"{player.Name} does not have enough mana to cast Lightning.");
-            }
+            target.Health -= damage;
+            Console.WriteLine($"{player.Name} casts Lightning for {damage} damage.");
         }
     }
     

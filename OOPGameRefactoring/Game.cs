@@ -93,8 +93,6 @@ namespace OOPGameRefactoring
         {
             // Check which player's turn it is.
             var currentPlayer = isPlayer ? player : enemy;
-            currentPlayer.Mana = player.Mana;
-            currentPlayer.Health = player.Health;
             var hand = currentPlayer.Hand;
 
             if (isPlayer)
@@ -145,38 +143,52 @@ namespace OOPGameRefactoring
 
         private void PlayCard(Card card, bool isPlayer)
         {
-            // Check which player is playing the card.
-            // Deduct the mana cost and play the card.
-            if (isPlayer)
+            var currentPlayer = isPlayer ? player : enemy;
+            var targetPlayer = isPlayer ? enemy : player;
+
+            // Deduct the mana cost and play the card
+            currentPlayer.Mana -= card.ManaCost;
+            card.Play(currentPlayer, targetPlayer);
+
+            // Apply buffs if the card grants them
+            if (card.GrantsFireBuff)
             {
-                player.Mana -= card.ManaCost;
-                Console.WriteLine($"\nPlayer played {card.Name}.");
-                card.Play(player, enemy);
+                currentPlayer.HasFireBuff = true;
+                currentPlayer.FireBuffCounter = 2; // Fire buff lasts for 2 turns
             }
-            else
+            if (card.GrantsIceShield)
             {
-                enemy.Mana -= card.ManaCost;
-                Console.WriteLine($"\nEnemy played {card.Name}.");
-                card.Play(enemy, player);
+                currentPlayer.HasIceShield = true;
+                currentPlayer.IceShieldCounter = 1; // Ice shield lasts for 1 turn
             }
         }
 
         private void UpdateBuffs(bool isPlayer)
         {
-            // Check if player or enemy has any buffs.
-            // Update the buffs at the end of the round.
-            if (isPlayer)
+            var currentPlayer = isPlayer ? player : enemy;
+
+            // Update fire buff
+            if (currentPlayer.HasFireBuff)
             {
-                if (player.HasFireBuff) player.HasFireBuff = false;
-                if (player.HasIceShield) player.HasIceShield = false;
-                player.Mana += 20;
+                currentPlayer.FireBuffCounter--;
+                if (currentPlayer.FireBuffCounter <= 0)
+                {
+                    currentPlayer.HasFireBuff = false;
+                }
             }
-            else
+
+            // Update ice shield
+            if (currentPlayer.HasIceShield)
             {
-                if (enemy.HasFireBuff) enemy.HasFireBuff = false;
-                if (enemy.HasIceShield) enemy.HasIceShield = false;
-                enemy.Mana += 20;
+                currentPlayer.IceShieldCounter--;
+                if (currentPlayer.IceShieldCounter <= 0)
+                {
+                    currentPlayer.HasIceShield = false;
+                }
             }
+
+            // Restore mana at the end of the round
+            currentPlayer.Mana += 20;
         }
     }
 }

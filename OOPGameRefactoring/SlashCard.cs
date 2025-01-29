@@ -19,16 +19,8 @@ namespace OOPGameRefactoring
         public override void Play(Player player, Player target)
         {
             int damage = 20;
-
-            if (player.Mana >= ManaCost)
-            {
-                target.Health -= damage;
-                Console.WriteLine($"{player.Name} casts Slash for {damage} damage.");
-            }
-            else
-            {
-                Console.WriteLine($"{player.Name} does not have enough mana to cast Slash.");
-            }
+            target.Health -= damage;
+            Console.WriteLine($"{player.Name} casts Slash for {damage} damage.");
         }
     }
 }

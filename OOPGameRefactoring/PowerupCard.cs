@@ -13,20 +13,14 @@ namespace OOPGameRefactoring
             Name = "PowerupCard";
             ManaCost = 30;
             Description = "Gain fire buff for 2 turns.";
+            GrantsFireBuff = true;
         }
 
         public override void Play(Player player, Player opponent)
         {
-            if (player.Mana >= ManaCost)
-            {
-                player.HasFireBuff = true;
-                player.Mana -= ManaCost;
-                Console.WriteLine($"{player.Name} gains Fire Buff");
-            }
-            else
-            {
-                Console.WriteLine($"{player.Name} does not have enough mana to cast Powerup.");
-            }
+            player.HasFireBuff = true;
+            player.Mana -= ManaCost;
+            Console.WriteLine($"{player.Name} gains Fire Buff");
         }
     }
 }

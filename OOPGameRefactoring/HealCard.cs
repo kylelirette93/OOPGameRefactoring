@@ -17,15 +17,8 @@ namespace OOPGameRefactoring
 
         public override void Play(Player player, Player target)
         {
-            if (player.Mana >= ManaCost)
-            {
-                player.Health += 40;
-                Console.WriteLine($"{player.Name} casts Heal and restores 40 health!");
-            }
-            else
-            {
-                Console.WriteLine($"{player.Name} does not have enough mana to cast Heal.");
-            }
+            player.Health += 40;
+            Console.WriteLine($"{player.Name} casts Heal and restores 40 health!");
         }
     }
 }

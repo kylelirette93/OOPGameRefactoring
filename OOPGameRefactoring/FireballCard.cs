@@ -17,15 +17,20 @@ namespace OOPGameRefactoring
 
         public override void Play(Player player, Player target)
         {
-            int damage = 30;
-            if (player.Mana < ManaCost)
+            int baseDamage = 30;
+            int damage = baseDamage;
+
+            // Apply fire buff
+            if (player.HasFireBuff)
             {
-                Console.WriteLine($"{player.Name} does not have enough mana to cast Fireball.");
-                return;
+                damage *= 2;
             }
 
-            if (player.HasFireBuff) damage *= 2;
-            if (target.HasIceShield) damage /= 2;
+            // Apply ice shield reduction
+            if (target.HasIceShield)
+            {
+                damage /= 2;
+            }
 
             if (target.Shield > 0)
             {
@@ -42,8 +47,6 @@ namespace OOPGameRefactoring
             }
             target.Health -= damage;
             Console.WriteLine($"{player.Name} casts Fireball for {damage} damage!");
-        }
-
-        
+        }     
     }
 }
