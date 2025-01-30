@@ -7,20 +7,14 @@ using System.Threading.Tasks;
 
 namespace OOPGameRefactoring
 {
-    public class SlashCard : Card
+    public class SlashCard : DamageCard
     {
         public SlashCard()
         {
-            Name = "SlashCard";
+            Name = "Slash";
             ManaCost = 20;
             Description = "Deal 20 damage.";
-        }
-
-        public override void Play(Character player, Character target)
-        {
-            int damage = 20;
-            target.Health -= damage;
-            Console.WriteLine($"{player.Name} casts Slash for {damage} damage.");
+            BaseDamage = 20;
         }
     }
 }

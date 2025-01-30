@@ -10,9 +10,9 @@ namespace OOPGameRefactoring
     {
         // Encapsule fields to properties.
         
-        public string Name { get; set; } // Auto-implemented in the constructor.
+        public string Name { get; private set; } // Auto-implemented in the constructor.
 
-        // Full property implementations.
+        // Full property with validation for health and mana.
         private int health;
         public int Health
         {

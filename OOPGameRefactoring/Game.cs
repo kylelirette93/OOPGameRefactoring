@@ -9,13 +9,10 @@ namespace OOPGameRefactoring
 {
     public class Game
     {
-        // Create instance of player and their deck.
-        private Player player = new Player("Player");
-        private Deck playerDeck = new Deck();
-
-        // Create instance of enemy and their deck.
-        private Enemy enemy = new Enemy("Enemy");
-        private Deck enemyDeck = new Deck();
+        private Player player;
+        private Deck playerDeck;
+        private Enemy enemy;
+        private Deck enemyDeck;
 
         Character currentPlayer;
         Character targetPlayer;
@@ -24,6 +21,18 @@ namespace OOPGameRefactoring
         Random random = new Random();
         bool isPlayer = true;
 
+        public Game()
+        {
+            // Initialize players and decks as soon as the game starts.
+            InitializePlayers();
+        }
+        private void InitializePlayers()
+        {
+            player = new Player("Player");
+            playerDeck = new Deck();
+            enemy = new Enemy("Enemy");
+            enemyDeck = new Deck();
+        }
         public void StartGame()
         {
             Console.WriteLine("=== Card Battle Game ===");
@@ -31,26 +40,20 @@ namespace OOPGameRefactoring
             // Main game loop.
             while (player.Health > 0 && enemy.Health > 0)
             {
-                // Draw hands at the start of the round.
-                if (player.Hand.Count < 3) player.DrawCards();
-                if (enemy.Hand.Count < 3) enemy.DrawCards();
-
+                DrawCards();
                 // Display information about the game state.
                 DisplayGameState();
-
                 // Start the player's turn.
                 PlayTurn(true);
 
-                // Check if enemy is alive.
-                if (enemy.Health <= 0) break;
+                if (enemy.Health < 0) break;
 
                 // Enemy's turn.
                 Console.WriteLine("\nEnemy's turn...");
                 Thread.Sleep(1000);
                 PlayTurn(false);
 
-                // Check if player is alive.
-                if (player.Health <= 0) break;
+                if (player.Health < 0) break;
 
                 // End of round effects.
                 UpdateBuffs(true);
@@ -67,7 +70,12 @@ namespace OOPGameRefactoring
         }
 
        
-
+        private void DrawCards()
+        {
+            // Draw hands at the start of the round.
+            if (player.Hand.Count < 3) player.DrawCards();
+            if (enemy.Hand.Count < 3) enemy.DrawCards();
+        }
         private void DisplayGameState()
         {
             // Display player and enemy stats.
@@ -95,17 +103,11 @@ namespace OOPGameRefactoring
             return "No cards in hand.";
         }
 
+
         private void PlayTurn(bool isPlayer)
         {
             // Check which player's turn it is.
-            if (isPlayer)
-            {
-                currentPlayer = player;
-            }
-            else
-            {
-                currentPlayer = enemy;
-            }
+            SetCurrentAndTargetPlayers(isPlayer);
 
             var hand = currentPlayer.Hand;
 
@@ -129,7 +131,7 @@ namespace OOPGameRefactoring
                     if (currentPlayer.Mana >= selectedCard.ManaCost)
                     {
                         // Play the card and remove it from the players hand.
-                        PlayCard(selectedCard, isPlayer);
+                        PlayCard(selectedCard);
                         hand.RemoveAt(choice - 1);
                     }
                     else
@@ -149,25 +151,14 @@ namespace OOPGameRefactoring
                 if (currentPlayer.Mana >= cardToPlay.ManaCost)
                 {
                     // Play the card and remove it from the enemy's hand.
-                    PlayCard(cardToPlay, isPlayer);
+                    PlayCard(cardToPlay);
                     hand.RemoveAt(cardIndex);
                 }
             }
         }
 
-        private void PlayCard(Card card, bool isPlayer)
+        private void PlayCard(Card card)
         { 
-            if (isPlayer)
-            {
-                currentPlayer = player;
-                targetPlayer = enemy;
-            }
-            else
-            {
-                currentPlayer = enemy;
-                targetPlayer = player;
-            }
-
             // Deduct the mana cost and play the card
             currentPlayer.Mana -= card.ManaCost;
             card.Play(currentPlayer, targetPlayer);
@@ -187,14 +178,7 @@ namespace OOPGameRefactoring
 
         private void UpdateBuffs(bool isPlayer)
         {
-            if (isPlayer)
-            {
-                currentPlayer = player;
-            }
-            else
-            {
-                currentPlayer = enemy;
-            }
+            SetCurrentAndTargetPlayers(isPlayer);
 
             // Update fire buff
             if (currentPlayer.HasFireBuff)
@@ -218,6 +202,19 @@ namespace OOPGameRefactoring
 
             // Restore mana at the end of the round
             currentPlayer.Mana += 20;
+        }
+        private void SetCurrentAndTargetPlayers(bool isPlayer)
+        {
+            if (isPlayer)
+            {
+                currentPlayer = player;
+                targetPlayer = enemy;
+            }
+            else
+            {
+                currentPlayer = enemy;
+                targetPlayer = player;
+            }
         }
     }
 }

@@ -15,6 +15,8 @@ namespace OOPGameRefactoring
         public int ManaCost { get { return manaCost; } set { manaCost = value; } }
         private string description;
         public string Description { get { return description; } set { description = value; } }
+        private int baseDamage;
+        public int BaseDamage { get { return baseDamage; } set { baseDamage = value; } }
         public bool GrantsFireBuff { get; set; }
         public bool GrantsIceShield { get; set; }
 
@@ -24,7 +26,7 @@ namespace OOPGameRefactoring
         }
 
 
-        // Abstract method to override and play any card type.
+        // Abstract method to override and play any card type, choosing the player and opponent.
         public abstract void Play(Character player, Character opponent);
     }
 }
